@@ -84,9 +84,17 @@ class App:
         self.top_right = tk.Frame(self.window, width=300, height=600)
         self.top_right.grid(row=0, column=1, padx=5, pady=5)
 
-        self.main_frame = tk.Frame(self.top_left, width=200, height=200, highlightbackground="black",
+        self.main_frame = tk.Frame(self.top_left, width=200, height=220, highlightbackground="black",
                                    highlightthickness=1, borderwidth=2, relief="sunken")
-        self.main_frame.grid(row=0, column=0)
+        self.main_frame.grid(row=0, column=0, padx=5, pady=5)
+
+        self.main_frame_1 = tk.Frame(self.top_left, width=200, height= 60, highlightbackground="black",
+                                   highlightthickness=1, borderwidth=2, relief="sunken")
+        self.main_frame_1.grid(row=1, column=0, padx=5, pady=5)
+
+        self.main_frame_2 = tk.Frame(self.top_left, width=200, height=30, highlightbackground="black",
+                                   highlightthickness=1, borderwidth=2, relief="sunken")
+        self.main_frame_2.grid(row=2, column=0, padx=5, pady=5)
 
         self.the_frame = tk.Frame(self.main_frame, width=200, height=20)
         self.the_frame.grid(row=1, column=0)
@@ -94,24 +102,41 @@ class App:
         self.folder_frame = tk.Frame(self.the_frame, width=200, height=20)
         self.folder_frame.grid(row=1, column=0)
 
+        self.the_frame_1 = tk.Frame(self.main_frame_1, width=200, height=20)
+        self.the_frame_1.grid(row=1, column=0)
+
+        self.low_frame_1 = tk.Frame(self.main_frame_1, width=200, height=20)
+        self.low_frame_1.grid(row=1, column=0)
+
+        self.the_frame_2 = tk.Frame(self.main_frame_2,width=200, height=20)
+        self.the_frame_2.grid(row=1, column=0)
+
+        self.low_frame_2 = tk.Frame(self.main_frame_2, width=200, height=20)
+        self.low_frame_2.grid(row=1, column=0)
 
         # Creates Canvas frame
         self.canvas0 = tk.Canvas(self.top_right, width=580, height=400, borderwidth=2, relief="sunken")
         self.canvas0.grid(row=0, column=0)
 
         # Labels
-        self.title = tk.Label(self.the_frame, text="Resistivity Plot", font=("Courier", 20, "bold"))
+        self.title = tk.Label(self.the_frame, text="Resistance Plot", font=("Courier", 15, "bold"))
         self.title.grid(row=0, column=0)
+
+        self.title_1 = tk.Label(self.the_frame_1, text="Resistivity Plot", font=("Courier", 15, "bold"))
+        self.title_1.grid(row=0, column=0)
+
+        self.title_2 = tk.Label(self.the_frame_2, text="Merge Plots", font=("Courier", 15, "bold"))
+        self.title_2.grid(row=0, column=0)
 
         self.file = tk.Label(self.folder_frame, text=self.file, width=30)
         self.file.grid(row=0, column=1)
 
-        self.chg_list = tk.Label(self.main_frame, text="A/L =", width=30)
-        self.chg_list.grid(row=2, column=0)
+        self.chg_list = tk.Label(self.low_frame_1, text="A/L =", width=5)
+        self.chg_list.grid(row=0, column=0)
 
         # Creates Entry Box
-        self.entry_box = tk.Entry(self.main_frame, textvariable = self.al_var)
-        self.entry_box.grid(row=2, column=2)
+        self.entry_box = tk.Entry(self.low_frame_2, textvariable = self.al_var)
+        self.entry_box.grid(row=0, column=1)
 
 
         # Button functions to change file
@@ -153,8 +178,8 @@ class App:
         self.save.grid(row=1, column=0, padx=10)
         self.save.config(width=9)
 
-        self.file_chg = tk.Button(self.main_frame, text="Go", activebackground='#00ff00', command=chg_al)
-        self.file_chg.grid(row=2, column=3)
+        self.file_chg = tk.Button(self.main_frame_1, text="Go", activebackground='#00ff00', command=chg_al)
+        self.file_chg.grid(row=0, column=3)
 
         self.window.mainloop()
 
