@@ -1,5 +1,5 @@
 #
-# File Name: Simples_Res.py
+# File Name: Metal_Insulator.py
 # By: Angel Martinez
 #
 # Last Modified: 04/25/2023
@@ -75,6 +75,7 @@ class App:
 
         # Stores the main data
         self.main_data = []
+        self.al_var = tk.StringVar()
 
         # Create Frames
         self.top_left = tk.Frame(self.window, width=200, height=400)
@@ -93,8 +94,6 @@ class App:
         self.folder_frame = tk.Frame(self.the_frame, width=200, height=20)
         self.folder_frame.grid(row=1, column=0)
 
-        self.dropdown_frame = tk.Frame(self.main_frame, width=200, height=20)
-        self.dropdown_frame.grid(row=2, column=0)
 
         # Creates Canvas frame
         self.canvas0 = tk.Canvas(self.top_right, width=580, height=400, borderwidth=2, relief="sunken")
@@ -106,6 +105,14 @@ class App:
 
         self.file = tk.Label(self.folder_frame, text=self.file, width=30)
         self.file.grid(row=0, column=1)
+
+        self.chg_list = tk.Label(self.main_frame, text="A/L =", width=30)
+        self.chg_list.grid(row=2, column=0)
+
+        # Creates Entry Box
+        self.entry_box = tk.Entry(self.main_frame, textvariable = self.al_var)
+        self.entry_box.grid(row=2, column=2)
+
 
         # Button functions to change file
         def chg_file():
@@ -128,8 +135,14 @@ class App:
             self.figure_canvas.get_tk_widget().grid(row=0, padx=5, pady=10)
 
         def save_file():
-            self.figure0 = None
+            plt.close()
             self.figure0, _ = plot_data(self.main_data[0], self.main_data[1], sh=True)
+            plt.show()
+
+        def chg_al():
+            a_l = float(self.al_var.get())
+            x, y = self.main_data[0], a_l*self.main_data[1]
+            return
 
         # Creates Button
         self.folder = tk.Button(self.folder_frame, text="File: ", activebackground='#00ff00', command=chg_file)
@@ -139,6 +152,9 @@ class App:
         self.save = tk.Button(self.folder_frame, text="Save", activebackground='#00ff00', command=save_file)
         self.save.grid(row=1, column=0, padx=10)
         self.save.config(width=9)
+
+        self.file_chg = tk.Button(self.main_frame, text="Go", activebackground='#00ff00', command=chg_al)
+        self.file_chg.grid(row=2, column=3)
 
         self.window.mainloop()
 
